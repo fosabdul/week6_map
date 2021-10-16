@@ -24,6 +24,50 @@ campuses.forEach(function(collegeCampus){
 })
 
 
+
+// Add a circle approximately around the Twin Cities metro 
+let metroAreaCircle = L.circle(metroAreaCenterCoordinates, {
+        color: 'purple',    // use any CSS color name
+        radius: 30000,
+        fillOpacity: 0.1
+    })
+    .bindPopup("Twin Cities Metro Area")
+    .addTo(map)
+    let canvas = document.querySelector('#chart')
+    let cxt = canvas.getContext('2d')
+    
+
+// Tried to do the chart under the map but it didn't work for me. 
+
+
+    let Charts = new Chart (cxt, {
+        type: 'bar',
+        date:{
+            labels:["Verrazano-Narrows Bridge", "Golden Gate", "Mackinac", "George Washinton", "Tacoma Narrows Bridge"],
+            datasets:[{
+                label:'Number of votes',
+                data: [18, 15, 10, 5, 9],
+    
+                backgroundColor: ['green', 'blue', 'red', 'yellow','purple']
+            }]
+        },
+    
+        options:{
+            scales: {
+    
+                yAxes:[{
+                    ticks:{
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    })
+
+    // / keep this code for future practice
+// doing each separately , one of each 
+
+
 // // Add some markers for Minneapolis College and Saint Paul College
 // let mctcCoordinates = [44.9724, -93.2844]
 // let mctcMarker = L.marker(mctcCoordinates)
@@ -42,13 +86,3 @@ campuses.forEach(function(collegeCampus){
 // let normMarker = L.marker(NormandaleCoordinates)
 //     .bindPopup('Normandale College<br><a href="https://normandale.edu">Website</a>')
 //     .addTo(map)
-
-
-// Add a circle approximately around the Twin Cities metro 
-let metroAreaCircle = L.circle(metroAreaCenterCoordinates, {
-        color: 'purple',    // use any CSS color name
-        radius: 30000,
-        fillOpacity: 0.1
-    })
-    .bindPopup("Twin Cities Metro Area")
-    .addTo(map)

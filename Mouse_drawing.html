@@ -17,7 +17,7 @@
 
 
 <P>Drag the mouse on the canvas</P>
-<canvas id="canvas" height="500" width="500"></canvas>
+<canvas id="canvas" height="700" width="700"></canvas>
 
 <script>
 
@@ -26,12 +26,12 @@
   let canvas = document.querySelector('#canvas')
   let context = canvas.getContext('2d')
 
-  // drawing circle
-        context.beginPath()
-        context.arc(250, 250, 100, 0, 6.3)
-        context.strokeStyle = 'darkblue'   
-        context.lineWidth = 25
-        context.stroke()
+  // // drawing circle
+  //       context.beginPath()
+  //       context.arc(250, 250, 100, 0, 6.3)
+  //       context.strokeStyle = 'darkblue'   
+  //       context.lineWidth = 25
+  //       context.stroke()
   
   // Keep track of whether the mouse button has been pressed down or not.
   // Think of this as whether the user is drawing or not, is their brush on the canvas?
@@ -39,6 +39,15 @@
 
   canvas.addEventListener('mousedown', function() {
     mousedown = true
+    let x = event.offsetX
+    let y = event.offsetY 
+    context.beginPath()
+    context.arc(x-5, y-5, 25, 0, 6.3)
+    context.strokeStyle = 'darkblue'   
+    // this the first click it shows the color blue
+    context.lineWidth = 15
+
+    context.stroke()
   })
 
   canvas.addEventListener('mouseup', function() {
@@ -55,14 +64,22 @@
     // If the mouse button is not pressed down, do not draw.
     if (!mousedown) { return }
 
-    // event is a built-in variable, contains the event that triggered this function
+  //  event is a built-in variable, contains the event that triggered this function
     // get the x, y location of the event
-    // let x = event.offsetX
-    // let y = event.offsetY   //offsetX, offsetY, may not work in older browsers
+    let x = event.offsetX
+    let y = event.offsetY   //offsetX, offsetY, may not work in older browsers
 
-    //Draw a filled rectangle centered under the mouse click
-    //x, y is the top left corner, so shift up and left by 5 to center it under the mouse.
-    // context.fillRect(x-5, y-5, 10, 10)
+    // Draw a filled rectangle centered under the mouse click
+    // x, y is the top left corner, so shift up and left by 5 to center it under the mouse.
+    
+
+    context.beginPath()
+    context.arc(x-5, y-5, 25,0, 6.3 )
+    context.strokeStyle = "yellow"   
+    // this is when I move the mouse that shows the color changes to yellow 
+    context.strokeWidth = 10
+    context.stroke()
+    
 
   })
 
